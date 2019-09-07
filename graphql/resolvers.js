@@ -1,15 +1,11 @@
-const Nicolas = {
-    name: "Nicolas",
-    age: 18,
-    gender: "female"
-};
+import { getMovies, getMovie, getSuggestions } from "./db";
 
-const resolvers ={
-    Query:{
-        person: function(){
-            return Nicolas;
-        }
-    }
-}
+const resolvers = {
+  Query: {
+    movies: (_, { rating, limit }) => getMovies(limit, rating),
+    movie: (_, { id }) => getMovie(id),
+    suggestions: (_, { id }) => getSuggestions(id)
+  }
+};
 
 export default resolvers;
